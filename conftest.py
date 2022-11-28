@@ -1,14 +1,11 @@
 import pytest
-from selene.support.shared import browser
-from selenium import webdriver
-from webdriver_manager.chrome import ChromeDriverManager
-from webdriver_manager.firefox import GeckoDriverManager
+from selene.support.shared import browser, config
 
 
 @pytest.fixture()
 def open_browser():
-    browser.config.driver = webdriver.Chrome(ChromeDriverManager().install())
-    #browser.config.driver = webdriver.Firefox(executable_path=GeckoDriverManager().install())
-    browser.driver.set_window_size(1920, 1080)
+    config.window_height = 1080
+    config.window_width = 1920
+#   config.browser_name = 'firefox'
     browser.open('https://google.com/ncr')
     yield
